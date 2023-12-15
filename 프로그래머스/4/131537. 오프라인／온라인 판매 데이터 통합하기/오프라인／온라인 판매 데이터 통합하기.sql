@@ -1,0 +1,19 @@
+SELECT to_char(sales_date,'YYYY-MM-DD') as sales_date,
+       PRODUCT_ID,
+       USER_ID,
+       SALES_AMOUNT
+  FROM (
+         SELECT T_OFFLINE.SALES_DATE AS SALES_DATE
+               ,T_OFFLINE.PRODUCT_ID
+               ,NULL AS USER_ID
+               ,T_OFFLINE.SALES_AMOUNT
+          FROM OFFLINE_SALE T_OFFLINE 
+         UNION 
+        SELECT T_ONLINE.SALES_DATE
+              ,T_ONLINE.PRODUCT_ID
+              ,T_ONLINE.USER_ID
+              ,T_ONLINE.SALES_AMOUNT
+         FROM ONLINE_SALE T_ONLINE       
+       ) T_SALES
+ WHERE  TO_CHAR(SALES_DATE, 'YYYY-MM') = '2022-03'
+  ORDER BY SALES_DATE,PRODUCT_ID,USER_ID
