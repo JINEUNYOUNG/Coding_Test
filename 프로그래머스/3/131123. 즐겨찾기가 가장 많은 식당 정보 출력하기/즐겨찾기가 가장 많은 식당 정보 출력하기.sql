@@ -1,0 +1,19 @@
+SELECT 
+    FOOD_TYPE,
+    REST_ID,
+    REST_NAME,
+    FAVORITES
+FROM (
+    SELECT 
+        RANK() OVER (PARTITION BY FOOD_TYPE ORDER BY FAVORITES DESC) AS rnk,
+        FOOD_TYPE,
+        REST_ID,
+        REST_NAME,
+        FAVORITES
+    FROM 
+        REST_INFO
+)
+WHERE 
+    rnk = 1
+ORDER BY 
+    FOOD_TYPE DESC;
