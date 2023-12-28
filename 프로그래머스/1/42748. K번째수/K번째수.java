@@ -13,8 +13,16 @@ class Solution {
             for (int j = 0 ; j  <arrays.length; j++){
                 arrays[j] = array[start+j];
             }
-            // 추출한 부분 배열을 정렬
-            Arrays.sort(arrays);
+            // 추출한 부분 배열을 정렬 (버블정렬)
+            for (int k = 0 ; k < arrays.length-1 ; k++){
+              for (int j = k+1 ; j < arrays.length; j++){
+                if (arrays[k]>arrays[j]){
+                    int temp = arrays[k];
+                    arrays[k] = arrays[j];
+                    arrays[j] = temp;
+                }
+            }
+            }
             
             //그 배열을 정렬
             answer[i] = arrays[commands[i][2]-1];
