@@ -1,5 +1,7 @@
 class Solution {
     public int solution(int[][] sizes) {
+        //가로 세로를 긴거 작은거로 정렬해두면
+        //가장 긴 가로 x 가장 긴 세로 로 구할 수 있을 듯!
         int answer = 0;
         int maxa = 0;
         int maxb = 0;
